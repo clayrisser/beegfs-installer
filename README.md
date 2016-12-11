@@ -21,6 +21,7 @@ curl -o storage-install.sh https://raw.githubusercontent.com/jamrizzi/beegfs-doc
 ```sh
 curl -o client-install.sh https://raw.githubusercontent.com/jamrizzi/beegfs-docker/master/client-install.sh && sudo bash client-install.sh
 ```
+Make sure your client machine restarts after installation.
 
 ### Admon Server (optional for graphical interface)
 ```sh
