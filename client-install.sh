@@ -36,7 +36,7 @@ if [ $RESTART_NEW ]; then
     RESTART=$RESTART_NEW
 fi
 if [ ${RESTART,,}=y ]; then
-    restart
+    reboot
 fi
 
 else # not run as root
