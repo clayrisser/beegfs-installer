@@ -1,4 +1,5 @@
-# BeeGFS Docker
+# beegfs-installer
+A clustered storage solution
 
 ## Installation
 
