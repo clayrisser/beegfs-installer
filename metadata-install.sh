@@ -16,8 +16,6 @@ if [ $METADATA_SERVICE_ID_NEW ]; then
     METADATA_SERVICE_ID=$METADATA_SERVICE_ID_NEW
 fi
 
-sed -i --follow-symlinks 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux && cat /etc/sysconfig/selinux
-echo 0 > /selinux/enforce
 curl -o /etc/yum.repos.d/beegfs-rhel7.repo http://www.beegfs.com/release/beegfs_6/dists/beegfs-rhel7.repo
 rpm --import http://www.beegfs.com/release/latest-stable/gpg/RPM-GPG-KEY-beegfs
 yum install -y beegfs-meta
