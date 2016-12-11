@@ -2,6 +2,7 @@
 
 # settings
 MANAGEMENT_NODE=node01
+KERNEL_MODULE_AUTOBUILD=false
 
 if [ $(whoami) = "root" ]; then # if run as root
 
@@ -10,14 +11,22 @@ read -p "Management Node (\"$MANAGEMENT_NODE\"): " $MANAGEMENT_NODE_NEW
 if [ $MANAGEMENT_NODE_NEW ]; then
     MANAGEMENT_NODE=$MANAGEMENT_NODE_NEW
 fi
+read -p "Kernel Module Autobuild (\"$KERNEL_MODULE_AUTOBUILD\"): " $KERNEL_MODULE_AUTOBUILD_NEW
+if [ $KERNEL_MODULE_AUTOBUILD_NEW ]; then
+    KERNEL_MODULE_AUTOBUILD=$KERNEL_MODULE_AUTOBUILD_NEW
+fi
 
+yum install -y kernel-devel
+yum groupinstall -y 'Development Tools'
 sed -i --follow-symlinks 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux && cat /etc/sysconfig/selinux
 echo 0 > /selinux/enforce
 curl -o /etc/yum.repos.d/beegfs-rhel7.repo http://www.beegfs.com/release/beegfs_6/dists/beegfs-rhel7.repo
 rpm --import http://www.beegfs.com/release/latest-stable/gpg/RPM-GPG-KEY-beegfs
 yum install -y beegfs-client beegfs-helperd beegfs-utils
-# sed -i "s/buildArgs=-j8/buildArgs=-j8 BEEGFS_OPENTK_IBVERBS=1/g" /etc/beegfs/beegfs-client-autobuild.conf
-# /etc/init.d/beegfs-client rebuild
+if [ $KERNEL_MODULE_AUTOBUILD=true ]; then
+    sed -i "s/buildArgs=-j8/buildArgs=-j8 BEEGFS_OPENTK_IBVERBS=1/g" /etc/beegfs/beegfs-client-autobuild.conf
+    /etc/init.d/beegfs-client rebuild
+fi
 /opt/beegfs/sbin/beegfs-setup-client -m $MANAGEMENT_NODE
 
 else # not run as root
