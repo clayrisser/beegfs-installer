@@ -6,7 +6,7 @@ MANAGEMENT_NODE=node01
 if [ $(whoami) = "root" ]; then # if run as root
 
 # gather information
-read -p "Management Node (\"$MANAGEMENT_NODE\"): " $MANAGEMENT_NODE_NEW
+read -p "Management Node ($MANAGEMENT_NODE): " MANAGEMENT_NODE_NEW
 if [ $MANAGEMENT_NODE_NEW ]; then
     MANAGEMENT_NODE=$MANAGEMENT_NODE_NEW
 fi

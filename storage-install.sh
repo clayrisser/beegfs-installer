@@ -8,15 +8,15 @@ STORAGE_TARGET_ID=301
 if [ $(whoami) = "root" ]; then # if run as root
 
 # gather information
-read -p "Management Node (\"$MANAGEMENT_NODE\"): " $MANAGEMENT_NODE_NEW
+read -p "Management Node ($MANAGEMENT_NODE): " MANAGEMENT_NODE_NEW
 if [ $MANAGEMENT_NODE_NEW ]; then
     MANAGEMENT_NODE=$MANAGEMENT_NODE_NEW
 fi
-read -p "Storage Service ID (\"$STORAGE_SERVICE_ID\"): " $STORAGE_SERVICE_ID_NEW
+read -p "Storage Service ID ($STORAGE_SERVICE_ID): " STORAGE_SERVICE_ID_NEW
 if [ $STORAGE_SERVICE_ID_NEW ]; then
     STORAGE_SERVICE_ID=$STORAGE_SERVICE_ID_NEW
 fi
-read -p "Storage Target ID (\"$STORAGE_TARGET_ID\"): " $STORAGE_TARGET_ID_NEW
+read -p "Storage Target ID ($STORAGE_TARGET_ID): " STORAGE_TARGET_ID_NEW
 if [ $STORAGE_TARGET_ID_NEW ]; then
     STORAGE_TARGET_ID=$STORAGE_TARGET_ID_NEW
 fi
