@@ -28,6 +28,8 @@ if [ ${KERNEL_MODULE_AUTOBUILD,,}=y ]; then
     /etc/init.d/beegfs-client rebuild
 fi
 /opt/beegfs/sbin/beegfs-setup-client -m $MANAGEMENT_NODE
+/etc/init.d/beegfs-client start
+/etc/init.d/beegfs-helperd start
 
 read -p "Restart Machine? (Y|n): " RESTART_NEW
 if [ $RESTART_NEW ]; then

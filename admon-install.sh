@@ -14,7 +14,8 @@ fi
 curl -o /etc/yum.repos.d/beegfs-rhel7.repo http://www.beegfs.com/release/beegfs_6/dists/beegfs-rhel7.repo
 rpm --import http://www.beegfs.com/release/latest-stable/gpg/RPM-GPG-KEY-beegfs
 yum install -y beegfs-admon
-sed -i "s/sysMgmtdHost                 =/sysMgmtdHost                 = $MANAGEMENT_NODE #/g" /etc/beegfs/beegfs-admon.conf
+sed -i "s/sysMgmtdHost                 =/sysMgmtdHost                 = $MANAGEMENT_NODE/g" /etc/beegfs/beegfs-admon.conf
+/etc/init.d/beegfs-admon start
 
 else # not run as root
     echo "this program must be run as root"
