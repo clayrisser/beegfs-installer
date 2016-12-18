@@ -28,3 +28,14 @@ Make sure your client machine restarts after installation.
 ```sh
 curl -o admon-install.sh https://raw.githubusercontent.com/jamrizzi/beegfs-docker/master/admon-install.sh && sudo bash admon-install.sh
 ```
+
+## Building
+Install pyinstaller
+```sh
+sudo pip install pyinstaller
+```
+
+2. Run pyinstaller on each python script
+```sh
+pyinstaller --onefile --noupx python-script.py
+```
