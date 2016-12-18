@@ -47,7 +47,8 @@ def install_client(options):
         yum install -y beegfs-client beegfs-helperd beegfs-utils
         ''')
         if (options['kernel_module-autobuild'] == 'Y'):
-
+            find_replace('/etc/beegfs/beegfs-client-autobuild.conf', 'buildArgs=-j8', 'buildArgs=-j8 BEEGFS_OPENTK_IBVERBS=1')
+            os.system('/etc/init.d/beegfs-client rebuild')
     elif (platform.dist()[0] == 'Ubuntu'):
         os.system('''
         apt-get install -y kernel-devel
