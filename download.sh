@@ -12,8 +12,8 @@ fi
 [ "$DISTRO" == "" ] && export DISTRO=$UNAME
 unset UNAME
 
-if [ "${DISTRO[0]}" == "Ubuntu" ]; then
+if [ "$DISTRO" == "Ubuntu" ]; then
     curl -L https://github.com/jamrizzi/beegfs-installer/releases/download/v0.0.4/beegfs-installer-ubuntu.tar.gz | tar zxv
-elif [ "${DISTRO[0]}" == "centos centos os redhat system system" ]; then
+elif [ "$(echo $DISTRO | awk '{print substr($0,0,6)}')" == "centos" ]; then
     curl -L https://github.com/jamrizzi/beegfs-installer/releases/download/v0.0.4/beegfs-installer-centos.tar.gz | tar zxv
 fi
