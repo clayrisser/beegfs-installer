@@ -4,7 +4,7 @@ A clustered storage solution
 ## Installation
 
 ```sh
-curl -O https://github.com/jamrizzi/beegfs-installer/releases/download/v0.0.2/beegfs-installer.tar.gz && tar -zxvf beegfs-installer.tar.gz
+curl https://github.com/jamrizzi/beegfs-installer/releases/download/v0.0.2/beegfs-installer.tar.gz | tar zxvf
 ```
 
 ### Management Server
