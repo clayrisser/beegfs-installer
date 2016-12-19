@@ -70,8 +70,8 @@ def install_client(options):
     os.system('''
     /opt/beegfs/sbin/beegfs-setup-client -m ''' + options['management_node'] + '''
     /etc/init.d/beegfs-helperd start
+    /etc/init.d/beegfs-client start
     /etc/init.d/beegfs-helperd status
-    /etc/init.d/beegfs-client status
     ''')
 
 def reboot(options):
