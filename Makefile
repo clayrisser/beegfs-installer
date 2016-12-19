@@ -53,18 +53,24 @@ bleach:
 
 ## FETCH DEPENDANCIES ##
 .PHONY: fetch_dependancies
-fetch_dependancies: pip pyinstaller
+fetch_dependancies: pip future pyinstaller
 	$(info fetched dependancies)
 
 .PHONY: pip
 pip:
-ifeq ($(shell which pip), $(shell echo))
+ifeq ($(shell whereis pip), $(shell echo))
 	curl -O https://bootstrap.pypa.io/get-pip.py
 	python get-pip.py
 endif
 
+.PHONY: future
+future:
+ifeq ($(shell python -m future), $(shell echo "No module named future"))
+	pip install future
+endif
+
 .PHONY: pyinstaller
 pyinstaller:
-ifeq ($(shell which pyinstaller), $(shell echo))
+ifeq ($(shell whereis pyinstaller), $(shell echo))
 	pip install pyinstaller
 endif
