@@ -5,6 +5,11 @@ import platform
 class Helper:
     def prepare(self):
         if (platform.dist()[0] == 'centos'):
+            os.system('''
+            yum clean all
+            rpm --rebuilddb
+            yum update -y
+            ''')
             if (platform.dist()[0] + platform.dist()[1][0] == 'centos5'):
                 os.system('curl -Lo /etc/yum.repos.d/beegfs-rhel5.repo http://www.beegfs.com/release/beegfs_6/dists/beegfs-rhel5.repo')
             elif (platform.dist()[0] + platform.dist()[1][0] == 'centos6'):
