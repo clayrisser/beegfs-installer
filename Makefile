@@ -1,5 +1,5 @@
 .PHONY: all
-all: fetch_dependancies build package sweep
+all: clean fetch_dependancies build package sweep
 
 
 ## BUILD ##
