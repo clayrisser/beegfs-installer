@@ -30,7 +30,7 @@ package: beegfs-installer.tar.gz
 
 beegfs-installer.tar.gz:
 	@mkdir beegfs-installer
-	@cp -r build/* beegfs-installer
+	@cp -r dist/* beegfs-installer
 	@tar -zcvf beegfs-installer.tar.gz beegfs-installer
 	@rm -rf beegfs-installer
 
