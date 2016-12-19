@@ -8,19 +8,19 @@ build: dist/admon-install dist/client-install dist/management-install dist/metad
 	$(info built)
 
 dist/admon-install:
-	pyinstaller --onefile --noupx admon-install.py
+	pyinstaller --onefile --noupx src/admon-install.py
 
 dist/client-install:
-	pyinstaller --onefile --noupx client-install.py
+	pyinstaller --onefile --noupx src/client-install.py
 
 dist/management-install:
-	pyinstaller --onefile --noupx management-install.py
+	pyinstaller --onefile --noupx src/management-install.py
 
 dist/metadata-install:
-	pyinstaller --onefile --noupx metadata-install.py
+	pyinstaller --onefile --noupx src/metadata-install.py
 
 dist/storage-install:
-	pyinstaller --onefile --noupx storage-install.py
+	pyinstaller --onefile --noupx src/storage-install.py
 
 
 ## PACKAGE ##
@@ -42,12 +42,12 @@ clean: sweep bleach
 
 .PHONY: sweep
 sweep:
-	@rm -rf build dist *.spec */*.pyc beegfs-installer
+	@rm -rf build dist *.spec */*.spec *.pyc */*.pyc
 	$(info swept)
 
 .PHONY: bleach
 bleach:
-	@rm -f beegfs-installer.tar.gz
+	@rm -rf beegfs-installer.tar.gz beegfs-installer
 	$(info bleached)
 
 

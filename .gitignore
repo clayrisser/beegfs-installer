@@ -8,3 +8,6 @@
 *.spec
 build
 dist
+
+# Build
+beegfs-installer*
