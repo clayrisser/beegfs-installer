@@ -9,9 +9,7 @@ from builtins import input
 helper = Helper()
 
 def main():
-    if os.getenv("SUDO_USER") == None:
-        print('Requires root privileges')
-        sys.exit('Exiting installer')
+    helper.is_root()
     helper.prepare()
     install_management()
 

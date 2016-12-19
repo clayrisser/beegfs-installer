@@ -20,3 +20,8 @@ class Helper:
         else:
             print('Operating system not supported')
             sys.exit('Exiting installer')
+
+    def is_root():
+        if os.getuid() != 0:
+            print('Requires root privileges')
+            sys.exit('Exiting installer')
