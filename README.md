@@ -36,5 +36,6 @@ sudo beegfs-installer/admon-install
 ## Building
 ```sh
 git clone https://github.com/jamrizzi/beegfs-installer.git
+cd beegfs-installer
 make
 ```
