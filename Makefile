@@ -42,7 +42,6 @@ dist/storage-install:
 
 ## PACKAGE ##
 beegfs-installer-centos.tar.gz:
-	bash /work/scripts/get_distro.sh
 	@mkdir beegfs-installer
 	@cp -r dist/* beegfs-installer
 	@tar -zcvf beegfs-installer-centos.tar.gz beegfs-installer

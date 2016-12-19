@@ -11,4 +11,5 @@ dist
 get-pip.py
 
 # Build
+beegfs-installer
 beegfs-installer*
