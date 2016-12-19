@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Determine OS platform
 UNAME=$(uname | tr "[:upper:]" "[:lower:]")
 if [ "$UNAME" == "linux" ]; then
     if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
@@ -11,9 +10,6 @@ if [ "$UNAME" == "linux" ]; then
 fi
 [ "$DISTRO" == "" ] && export DISTRO=$UNAME
 unset UNAME
-
-if [ "$DISTRO" == "Ubuntu" ]; then
-    curl -L https://github.com/jamrizzi/beegfs-installer/releases/download/v0.0.4/beegfs-installer-ubuntu.tar.gz | tar zxv
-elif [ "$(echo $DISTRO | awk '{print substr($0,0,6)}')" == "centos" ]; then
-    curl -L https://github.com/jamrizzi/beegfs-installer/releases/download/v0.0.4/beegfs-installer-centos.tar.gz | tar zxv
+if [ "$(echo $DISTRO | awk '{print substr($0,0,6)}')" == "centos" ]; then
+    export DISTRO=centos
 fi

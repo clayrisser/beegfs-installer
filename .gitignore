@@ -8,6 +8,7 @@
 *.spec
 build
 dist
+get-pip.py
 
 # Build
 beegfs-installer*

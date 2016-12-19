@@ -1,8 +1,25 @@
+CWD := $(shell readlink -en $(dir $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))))
+
+
 .PHONY: all
-all: fetch_dependancies build package sweep
+all: fetch_docker build_from_docker
 
 
 ## BUILD ##
+.PHONY: build_from_docker
+build_from_docker:
+	docker run --rm -it -v $(CWD):/work jamrizzi/centos-dev:latest make build_centos
+	docker run --rm -it -v $(CWD):/work jamrizzi/ubuntu-dev:latest make build_ubuntu
+	$(info built from docker)
+
+.PHONY: build_centos
+build_centos: fetch_dependancies build beegfs-installer-centos.tar.gz sweep
+$(info built for centos)
+
+.PHONY: build_ubuntu
+build_ubuntu: fetch_dependancies build beegfs-installer-ubuntu.tar.gz sweep
+$(info built for ubuntu)
+
 .PHONY: build
 build: dist/admon-install dist/client-install dist/management-install dist/metadata-install dist/storage-install
 	$(info built)
@@ -24,14 +41,17 @@ dist/storage-install:
 
 
 ## PACKAGE ##
-.PHONY: package
-package: beegfs-installer.tar.gz
-	$(info packaged)
-
-beegfs-installer.tar.gz:
+beegfs-installer-centos.tar.gz:
+	bash /work/scripts/get_distro.sh
 	@mkdir beegfs-installer
 	@cp -r dist/* beegfs-installer
-	@tar -zcvf beegfs-installer.tar.gz beegfs-installer
+	@tar -zcvf beegfs-installer-centos.tar.gz beegfs-installer
+	@rm -rf beegfs-installer
+
+beegfs-installer-ubuntu.tar.gz:
+	@mkdir beegfs-installer
+	@cp -r dist/* beegfs-installer
+	@tar -zcvf beegfs-installer-ubuntu.tar.gz beegfs-installer
 	@rm -rf beegfs-installer
 
 
@@ -42,7 +62,7 @@ clean: sweep bleach
 
 .PHONY: sweep
 sweep:
-	@rm -rf build dist *.spec */*.spec *.pyc */*.pyc
+	@rm -rf build dist *.spec */*.spec *.pyc */*.pyc get-pip.py
 	$(info swept)
 
 .PHONY: bleach
@@ -72,3 +92,10 @@ pyinstaller:
 ifeq ($(shell whereis pyinstaller), $(shell echo pyinstaller:))
 	pip install pyinstaller
 endif
+
+.PHONY: fetch_docker
+fetch_docker:
+ifeq ($(shell whereis docker), $(shell echo docker:))
+	curl -L https://get.docker.com/ | bash
+endif
+	$(info fetched docker)
