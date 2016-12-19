@@ -47,7 +47,7 @@ sweep:
 
 .PHONY: bleach
 bleach:
-	@rm -rf beegfs-installer.tar.gz beegfs-installer
+	@rm -rf beegfs-installer beegfs-installer*
 	$(info bleached)
 
 
