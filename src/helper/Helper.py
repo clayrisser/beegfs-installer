@@ -4,6 +4,7 @@ import platform
 
 class Helper:
     def prepare(self):
+        print('your os is ' + platform.dist()[0])
         if (platform.dist()[0] == 'centos'):
             os.system('''
             yum clean all
