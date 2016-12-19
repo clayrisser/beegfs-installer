@@ -58,19 +58,17 @@ fetch_dependancies: pip future pyinstaller
 
 .PHONY: pip
 pip:
-ifeq ($(shell whereis pip), $(shell echo))
+ifeq ($(shell whereis pip), $(shell echo pip:))
 	curl -O https://bootstrap.pypa.io/get-pip.py
 	python get-pip.py
 endif
 
 .PHONY: future
 future:
-ifeq ($(shell python -m future), $(shell echo "No module named future"))
 	pip install future
-endif
 
 .PHONY: pyinstaller
 pyinstaller:
-ifeq ($(shell whereis pyinstaller), $(shell echo))
+ifeq ($(shell whereis pyinstaller), $(shell echo pyinstaller:))
 	pip install pyinstaller
 endif
