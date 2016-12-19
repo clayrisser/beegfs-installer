@@ -19,7 +19,7 @@ class Helper:
                 os.system('curl -Lo /etc/yum.repos.d/beegfs-rhel7.repo http://www.beegfs.com/release/beegfs_6/dists/beegfs-rhel7.repo')
             os.system('rpm --import http://www.beegfs.com/release/latest-stable/gpg/RPM-GPG-KEY-beegfs')
             os.system('yum update -y')
-        elif (platform.dist()[0] == 'Ubuntu'):
+        elif (platform.dist()[0] == 'debian'):
             os.system('curl -Lo /etc/apt/sources.list.d/beegfs-deb8.list http://www.beegfs.com/release/beegfs_6/dists/beegfs-deb8.list')
             os.system('curl -L http://www.beegfs.com/release/latest-stable/gpg/DEB-GPG-KEY-beegfs | apt-key add -')
             os.system('apt-get update -y')
