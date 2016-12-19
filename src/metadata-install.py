@@ -48,7 +48,7 @@ def install_metadata(options):
         print('Operating system not supported')
         sys.exit('Exiting installer')
     os.system('''
-    beegfs-setup-meta -p /data/beegfs/beegfs_meta -s ''' + options['metadata_service_id'] + ''' -m ''' + options['management_node'] + '''
+    /opt/beegfs/sbin/beegfs-setup-meta -p /data/beegfs/beegfs_meta -s ''' + options['metadata_service_id'] + ''' -m ''' + options['management_node'] + '''
     /etc/init.d/beegfs-meta start
     /etc/init.d/beegfs-meta status
     ''')

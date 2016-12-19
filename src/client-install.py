@@ -19,14 +19,14 @@ def get_defaults():
     return {
         'management_node': 'node01',
         'kernel_module_autobuild': 'N',
-        'restart': 'Y'
+        'reboot': 'Y'
     }
 
 def gather_information(defaults):
     options = {}
     options['management_node'] = default_prompt('Management Node', defaults['management_node'])
     options['kernel_module_autobuild'] = boolean_prompt('Kernel Module Autobuild', defaults['kernel_module_autobuild'])
-    options['restart'] = boolean_prompt('Restart', defaults['restart'])
+    options['reboot'] = boolean_prompt('Reboot', defaults['reboot'])
     return options
 
 def default_prompt(name, fallback):

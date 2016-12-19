@@ -12,8 +12,7 @@ def main():
     helper.is_root()
     options = gather_information(get_defaults())
     helper.prepare()
-    install_client(options)
-    reboot(options)
+    install_storage(options)
 
 def get_defaults():
     return {
@@ -37,36 +36,19 @@ def default_prompt(name, fallback):
     else:
         return fallback
 
-def install_client(options):
+def install_storage(options):
     if (platform.dist()[0] == 'centos'):
-        os.system('''
-        yum install -y kernel-devel
-        yum groupinstall -y 'Development Tools'
-        yum install -y beegfs-client beegfs-helperd beegfs-utils
-        ''')
-        if (options['kernel_module-autobuild'] == 'Y'):
-            find_replace('/etc/beegfs/beegfs-client-autobuild.conf', 'buildArgs=-j8', 'buildArgs=-j8 BEEGFS_OPENTK_IBVERBS=1')
-            os.system('/etc/init.d/beegfs-client rebuild')
+        os.system('yum install -y beegfs-storage')
     elif (platform.dist()[0] == 'Ubuntu'):
-        os.system('''
-        apt-get install -y kernel-devel
-        apt-get groupinstall -y 'Development Tools'
-        apt-get install -y beegfs-client beegfs-helperd beegfs-utils
-        ''')
+        os.system('apt-get install -y beegfs-storage')
     else:
         print('Operating system not supported')
         sys.exit('Exiting installer')
     os.system('''
-    /opt/beegfs/sbin/beegfs-setup-client -m ''' + options['management_node'] + '''
-    /etc/init.d/beegfs-client start
-    /etc/init.d/beegfs-helperd start
-    /etc/init.d/beegfs-client status
-    /etc/init.d/beegfs-helperd status
+    /opt/beegfs/sbin/beegfs-setup-storage -p /mnt/myraid1/beegfs_storage -s ''' + options['storage_service_id'] + ''' -i ''' + options['storage_target_id'] + ''' -m ''' + options['management_node'] + '''
+    /etc/init.d/beegfs-storage start
+    /etc/init.d/beegfs-storage status
     ''')
-
-def reboot(options):
-    if (options['reboot'] == 'Y'):
-        os.system('reboot')
 
 def find_replace(path, find, replace):
     filedata = None
