@@ -51,7 +51,7 @@ bleach:
 	$(info bleached)
 
 
-## DEPENDANCIES ##
+## FETCH DEPENDANCIES ##
 .PHONY: fetch_dependancies
 fetch_dependancies: pip pyinstaller
 	$(info fetched dependancies)
