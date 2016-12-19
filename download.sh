@@ -14,6 +14,6 @@ unset UNAME
 
 if [ "${DISTRO[0]}" == "Ubuntu" ]; then
     curl -L https://github.com/jamrizzi/beegfs-installer/releases/download/v0.0.4/beegfs-installer-ubuntu.tar.gz | tar zxv
-elif [ "${DISTRO[0]}" == "centos" ]; then
+elif [ "${DISTRO[0]}" == "centos centos os redhat system system" ]; then
     curl -L https://github.com/jamrizzi/beegfs-installer/releases/download/v0.0.4/beegfs-installer-centos.tar.gz | tar zxv
 fi
