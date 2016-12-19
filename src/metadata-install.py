@@ -13,7 +13,6 @@ def main():
     options = gather_information(get_defaults())
     helper.prepare()
     install_metadata(options)
-    reboot(options)
 
 def get_defaults():
     return {
