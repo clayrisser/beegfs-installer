@@ -14,11 +14,11 @@ build_from_docker:
 
 .PHONY: build_centos
 build_centos: fetch_dependancies build beegfs-installer-centos.tar.gz sweep
-$(info built for centos)
+	$(info built for centos)
 
 .PHONY: build_ubuntu
 build_ubuntu: fetch_dependancies build beegfs-installer-ubuntu.tar.gz sweep
-$(info built for ubuntu)
+	$(info built for ubuntu)
 
 .PHONY: build
 build: dist/admon-install dist/client-install dist/management-install dist/metadata-install dist/storage-install
