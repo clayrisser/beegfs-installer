@@ -60,8 +60,7 @@ def install_client(options):
 
     elif (platform.dist()[0] == 'Ubuntu'):
         os.system('''
-        apt-get install -y kernel-devel
-        apt-get groupinstall -y 'Development Tools'
+        apt-get install -y linux-headers-generic build-essential
         apt-get install -y beegfs-client beegfs-helperd beegfs-utils
         ''')
     else:
