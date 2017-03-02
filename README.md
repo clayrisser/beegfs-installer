@@ -1,7 +1,7 @@
 # beegfs-installer
 Easy installer for BeeGFS
 
-This installer only supports CentOS and Ubuntu.
+Installer only supports CentOS and Ubuntu
 
 ## Installation
 
