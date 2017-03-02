@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 import sys
 import os
@@ -13,41 +13,16 @@ def main():
     options = gather_information(get_defaults())
     helper.prepare()
     install_client(options)
-    reboot(options)
 
 def get_defaults():
     return {
-        'management_node': 'node01',
-        'kernel_module_autobuild': 'N',
-        'reboot': 'Y'
+        'management_node': 'localhost'
     }
 
 def gather_information(defaults):
     options = {}
-    options['management_node'] = default_prompt('Management Node', defaults['management_node'])
-    options['kernel_module_autobuild'] = boolean_prompt('Kernel Module Autobuild', defaults['kernel_module_autobuild'])
-    options['reboot'] = boolean_prompt('Reboot', defaults['reboot'])
+    options['management_node'] = _default_prompt('Management Node', defaults['management_node'])
     return options
-
-def default_prompt(name, fallback):
-    response = input(name + ' (' + fallback + '): ')
-    assert isinstance(response, str)
-    if (response):
-        return response
-    else:
-        return fallback
-
-def boolean_prompt(name, fallback):
-    default = 'Y|n'
-    fallback = fallback.upper()
-    if (fallback == 'N'):
-        default = 'y|N'
-    response = input(name + ' (' + default + '): ')
-    assert isinstance(response, str)
-    if (response):
-        return response.upper()
-    else:
-        return fallback
 
 def install_client(options):
     if (platform.dist()[0] == 'centos'):
@@ -56,8 +31,6 @@ def install_client(options):
         yum groupinstall -y 'Development Tools'
         yum install -y beegfs-client beegfs-helperd beegfs-utils
         ''')
-#        if (options['kernel_module-autobuild'] == 'Y'):
-
     elif (platform.dist()[0] == 'Ubuntu'):
         os.system('''
         apt-get install -y linux-headers-generic build-essential
@@ -71,18 +44,27 @@ def install_client(options):
     /etc/init.d/beegfs-helperd start
     /etc/init.d/beegfs-client start
     /etc/init.d/beegfs-helperd status
+    /etc/init.d/beegfs-client status
     ''')
 
-def reboot(options):
-    if (options['reboot'] == 'Y'):
-        os.system('reboot')
+def _default_prompt(name, fallback):
+    response = input(name + ' (' + fallback + '): ')
+    assert isinstance(response, str)
+    if (response):
+        return response
+    else:
+        return fallback
 
-def find_replace(path, find, replace):
-    filedata = None
-    with open(path, 'r') as file:
-        filedata = file.read()
-        filedata = filedata.replace(find, replace)
-    with open(path, 'w') as file:
-        file.write(filedata)
+def _boolean_prompt(name, fallback):
+    default = 'Y|n'
+    fallback = fallback.upper()
+    if (fallback == 'N'):
+        default = 'y|N'
+    response = input(name + ' (' + default + '): ')
+    assert isinstance(response, str)
+    if (response):
+        return response.upper()
+    else:
+        return fallback
 
 main()

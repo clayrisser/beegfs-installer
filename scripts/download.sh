@@ -1,5 +1,7 @@
 #!/bin/bash
 
+BEEGFS_INSTALLER_RELEASE=v0.1.0
+
 UNAME=$(uname | tr "[:upper:]" "[:lower:]")
 if [ "$UNAME" == "linux" ]; then
     if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
@@ -14,7 +16,7 @@ if [ "$(echo $DISTRO | awk '{print substr($0,0,6)}')" == "centos" ]; then
     export DISTRO=centos
 fi
 if [ "$DISTRO" == "Ubuntu" ]; then
-    curl -L https://github.com/jamrizzi/beegfs-installer/releases/download/v0.0.5/beegfs-installer-ubuntu.tar.gz | tar zxv
+    curl -L https://github.com/jamrizzi/beegfs-installer/releases/download/$BEEGFS_INSTALLER_RELEASE/beegfs-installer-ubuntu.tar.gz | tar zxv
 elif [ "$DISTRO" == "centos" ]; then
-    curl -L https://github.com/jamrizzi/beegfs-installer/releases/download/v0.0.5/beegfs-installer-centos.tar.gz | tar zxv
+    curl -L https://github.com/jamrizzi/beegfs-installer/releases/download/$BEEGFS_INSTALLER_RELEASE/beegfs-installer-centos.tar.gz | tar zxv
 fi

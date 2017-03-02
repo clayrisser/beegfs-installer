@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 import sys
 import os
@@ -16,23 +16,15 @@ def main():
 
 def get_defaults():
     return {
-        'management_node': 'node01',
+        'management_node': 'localhost',
         'metadata_service_id': '2'
     }
 
 def gather_information(defaults):
     options = {}
-    options['management_node'] = default_prompt('Management Node', defaults['management_node'])
-    options['metadata_service_id'] = default_prompt('Metadata Service ID', defaults['metadata_service_id'])
+    options['management_node'] = _default_prompt('Management Node', defaults['management_node'])
+    options['metadata_service_id'] = _default_prompt('Metadata Service ID', defaults['metadata_service_id'])
     return options
-
-def default_prompt(name, fallback):
-    response = input(name + ' (' + fallback + '): ')
-    assert isinstance(response, str)
-    if (response):
-        return response
-    else:
-        return fallback
 
 def install_metadata(options):
     if (platform.dist()[0] == 'centos'):
@@ -47,17 +39,17 @@ def install_metadata(options):
         print('Operating system not supported')
         sys.exit('Exiting installer')
     os.system('''
-    /opt/beegfs/sbin/beegfs-setup-meta -p /data/beegfs/beegfs_meta -s ''' + options['metadata_service_id'] + ''' -m ''' + options['management_node'] + '''
+    /opt/beegfs/sbin/beegfs-setup-meta -p /data/beegfs/beegfs_meta -s ''' + options['metadata_service_id'] + ' -m ' + options['management_node'] + '''
     /etc/init.d/beegfs-meta start
     /etc/init.d/beegfs-meta status
     ''')
 
-def find_replace(path, find, replace):
-    filedata = None
-    with open(path, 'r') as file:
-        filedata = file.read()
-        filedata = filedata.replace(find, replace)
-    with open(path, 'w') as file:
-        file.write(filedata)
+def _default_prompt(name, fallback):
+    response = input(name + ' (' + fallback + '): ')
+    assert isinstance(response, str)
+    if (response):
+        return response
+    else:
+        return fallback
 
 main()
