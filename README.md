@@ -26,7 +26,6 @@ sudo beegfs-installer/storage-install
 ```sh
 sudo beegfs-installer/client-install
 ```
-Make sure your client machine restarts after installation.
 
 ### Admon Server (optional for graphical interface)
 ```sh
