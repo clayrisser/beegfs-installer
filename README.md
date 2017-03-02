@@ -1,6 +1,8 @@
 # beegfs-installer
 A clustered storage solution
 
+This installer only supports CentOS and Ubuntu.
+
 ## Installation
 
 ```sh
