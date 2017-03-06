@@ -21,7 +21,7 @@ def install_management():
         print('Operating system not supported')
         sys.exit('Exiting installer')
     os.system('''
-    /opt/beegfs/sbin/beegfs-setup-mgmtd -p /data/beegfs/beegfs_mgmtd
+    /opt/beegfs/sbin/beegfs-setup-mgmtd -p /data/beegfs/beegfs-mgmtd
     /etc/init.d/beegfs-mgmtd start
     /etc/init.d/beegfs-mgmtd status
     ''')
