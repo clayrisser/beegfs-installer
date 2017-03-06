@@ -42,7 +42,7 @@ def install_metadata(options):
     if options['metadata_mount'] != 'local':
         os.system('''
         mkdir -p /mnt/beegfs-meta/
-        mkfs.ext4 -i 2048 -I 512 -J size=400 -Odir_index,filetype ''' + options['metadata_mount'] + '''
+        mkfs.ext4 ''' + options['metadata_mount'] + '''
         echo "''' + options['metadata_mount'] + ' ' + '/mnt/beegfs-meta/' + ''' ext4 defaults 0 2" | tee -a /etc/fstab
         mount -a && mount
         chmod -R 777 /mnt/beegfs-meta/
