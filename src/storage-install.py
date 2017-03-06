@@ -39,6 +39,7 @@ def install_storage(options):
         sys.exit('Exiting installer')
     if options['storage_mount'] != 'local':
         os.system('''
+        mkdir -p /mnt/beegfs-storage/
         mkfs.xfs ''' + options['storage_mount'] + '''
         echo "''' + options['storage_mount'] + ' ' + '/mnt/beegfs-storage/' + ''' xfs defaults 0 2" | tee -a /etc/fstab
         mount -a && mount
