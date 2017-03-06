@@ -7,25 +7,25 @@ Installer only supports CentOS and Ubuntu
 
 ### Management Server
 ```sh
-curl -OL https://raw.githubusercontent.com/jamrizzi/beegfs-installer/master/install.py; sudo python2 install.py management
+curl -L -o beegfs.py http://bit.ly/2n5lDz5; sudo python2 beegfs.py management
 ```
 
 ### Metadata Server
 ```sh
-curl -OL https://raw.githubusercontent.com/jamrizzi/beegfs-installer/master/install.py; sudo python2 install.py metadata
+curl -L -o beegfs.py http://bit.ly/2n5lDz5; sudo python2 beegfs.py metadata
 ```
 
 ### Storage Server
 ```sh
-curl -OL https://raw.githubusercontent.com/jamrizzi/beegfs-installer/master/install.py; sudo python2 install.py storage
+curl -L -o beegfs.py http://bit.ly/2n5lDz5; sudo python2 beegfs.py storage
 ```
 
 ### Client
 ```sh
-curl -OL https://raw.githubusercontent.com/jamrizzi/beegfs-installer/master/install.py; sudo python2 install.py client
+curl -L -o beegfs.py http://bit.ly/2n5lDz5; sudo python2 beegfs.py client
 ```
 
 ### Admon Server (optional for graphical interface)
 ```sh
-curl -OL https://raw.githubusercontent.com/jamrizzi/beegfs-installer/master/install.py; sudo python2 install.py admon
+curl -L -o beegfs.py http://bit.ly/2n5lDz5; sudo python2 beegfs.py admon
 ```
