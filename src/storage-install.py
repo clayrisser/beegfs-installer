@@ -43,6 +43,7 @@ def install_storage(options):
         mkfs.xfs ''' + options['storage_mount'] + '''
         echo "''' + options['storage_mount'] + ' ' + '/mnt/beegfs-storage/' + ''' xfs defaults 0 2" | tee -a /etc/fstab
         mount -a && mount
+        chmod -R 777 /mnt/beegfs-storage/
         /opt/beegfs/sbin/beegfs-setup-storage -p /mnt/beegfs-storage/ -s ''' + options['storage_service_id'] + ' -i ' + options['storage_target_id'] + ' -m ' + options['management_node'] + '''
         ''')
     else:

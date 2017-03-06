@@ -45,6 +45,7 @@ def install_metadata(options):
         mkfs.ext4 -i 2048 -I 512 -J size=400 -Odir_index,filetype ''' + options['metadata_mount'] + '''
         echo "''' + options['metadata_mount'] + ' ' + '/mnt/beegfs-meta/' + ''' ext4 defaults 0 2" | tee -a /etc/fstab
         mount -a && mount
+        chmod -R 777 /mnt/beegfs-meta/
         /opt/beegfs/sbin/beegfs-setup-meta -p /mnt/beegfs-meta/ -s ''' + options['metadata_service_id'] + ' -m ' + options['management_node'] + '''
         ''')
     else:
