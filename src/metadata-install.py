@@ -49,19 +49,13 @@ def install_metadata(options):
         rm -rf /mnt/beegfs-meta/* && rm -rf /mnt/beegfs-meta/.*
         /opt/beegfs/sbin/beegfs-setup-meta -p /mnt/beegfs-meta/ -s ''' + options['metadata_service_id'] + ' -m ' + options['management_node'] + '''
         ''')
+        helper.find_replace('/etc/beegfs/beegfs-admon.conf', 'sysMgmtdHost                 =', 'sysMgmtdHost                 = ' + options['management_node'])
+        helper.find_replace('/etc/beegfs/beegfs-admon.conf', 'storeMetaDirectory           =', 'storeMetaDirectory           = /data/beegfs/beegfs-meta/')
     else:
         os.system('/opt/beegfs/sbin/beegfs-setup-meta -p /data/beegfs/beegfs-meta/ -s ' + options['metadata_service_id'] + ' -m ' + options['management_node'])
     os.system('''
     /etc/init.d/beegfs-meta start
     /etc/init.d/beegfs-meta status
     ''')
-
-def _default_prompt(name, fallback):
-    response = input(name + ' (' + fallback + '): ')
-    assert isinstance(response, str)
-    if (response):
-        return response
-    else:
-        return fallback
 
 main()
