@@ -16,15 +16,13 @@ def main():
 def get_defaults():
     return {
         'management_node': 'localhost',
-        'metadata_service_id': '2',
-        'metadata_mount': 'local'
+        'metadata_service_id': '2'
     }
 
 def gather_information(defaults):
     options = {}
     options['management_node'] = helper.default_prompt('Management Node', defaults['management_node'])
     options['metadata_service_id'] = helper.default_prompt('Metadata Service ID', defaults['metadata_service_id'])
-    options['metadata_mount'] = helper.default_prompt('Metadata Mount', defaults['metadata_mount'])
     return options
 
 def install_metadata(options):
@@ -39,20 +37,8 @@ def install_metadata(options):
     else:
         print('Operating system not supported')
         sys.exit('Exiting installer')
-    if options['metadata_mount'] != 'local':
-        os.system('''
-        mkdir -p /mnt/beegfs-meta/
-        mkfs.xfs ''' + options['metadata_mount'] + '''
-        echo "''' + options['metadata_mount'] + ' ' + '/mnt/beegfs-meta/' + ''' xfs defaults 0 2" | tee -a /etc/fstab
-        mount -a && mount
-        chmod -R 777 /mnt/beegfs-meta/
-        /opt/beegfs/sbin/beegfs-setup-meta -p /mnt/beegfs-meta/ -s ''' + options['metadata_service_id'] + ' -m ' + options['management_node'] + '''
-        ''')
-        helper.find_replace('/etc/beegfs/beegfs-meta.conf', 'sysMgmtdHost                 =', 'sysMgmtdHost                 = ' + options['management_node'])
-        helper.find_replace('/etc/beegfs/beegfs-meta.conf', 'storeMetaDirectory           =', 'storeMetaDirectory           = /mnt/beegfs-meta/')
-    else:
-        os.system('/opt/beegfs/sbin/beegfs-setup-meta -p /data/beegfs/beegfs-meta/ -s ' + options['metadata_service_id'] + ' -m ' + options['management_node'])
     os.system('''
+    /opt/beegfs/sbin/beegfs-setup-meta -p /data/beegfs/beegfs-meta/ -s ''' + options['metadata_service_id'] + ' -m ' + options['management_node'] + '''
     /etc/init.d/beegfs-meta start
     /etc/init.d/beegfs-meta status
     ''')
