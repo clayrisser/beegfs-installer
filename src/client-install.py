@@ -21,7 +21,7 @@ def get_defaults():
 
 def gather_information(defaults):
     options = {}
-    options['management_node'] = _default_prompt('Management Node', defaults['management_node'])
+    options['management_node'] = self.default_prompt('Management Node', defaults['management_node'])
     return options
 
 def install_client(options):
@@ -46,25 +46,5 @@ def install_client(options):
     /etc/init.d/beegfs-helperd status
     /etc/init.d/beegfs-client status
     ''')
-
-def _default_prompt(name, fallback):
-    response = input(name + ' (' + fallback + '): ')
-    assert isinstance(response, str)
-    if (response):
-        return response
-    else:
-        return fallback
-
-def _boolean_prompt(name, fallback):
-    default = 'Y|n'
-    fallback = fallback.upper()
-    if (fallback == 'N'):
-        default = 'y|N'
-    response = input(name + ' (' + default + '): ')
-    assert isinstance(response, str)
-    if (response):
-        return response.upper()
-    else:
-        return fallback
 
 main()

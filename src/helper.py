@@ -30,3 +30,19 @@ class Helper:
         if os.getuid() != 0:
             print('Requires root privileges')
             sys.exit('Exiting installer')
+
+    def default_prompt(self, name, fallback):
+        response = input(name + ' (' + fallback + '): ')
+        assert isinstance(response, str)
+        if (response):
+            return response
+        else:
+            return fallback
+
+    def find_replace(self, path, find, replace):
+        filedata = None
+        with open(path, 'r') as file:
+            filedata = file.read()
+            filedata = filedata.replace(find, replace)
+        with open(path, 'w') as file:
+            file.write(filedata)
