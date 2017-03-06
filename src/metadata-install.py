@@ -5,7 +5,6 @@ import os
 import platform
 import fileinput
 from helper import Helper
-from builtins import input
 helper = Helper()
 
 def main():

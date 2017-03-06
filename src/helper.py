@@ -1,6 +1,7 @@
 import sys
 import os
 import platform
+from builtins import input
 
 class Helper:
     def prepare(self):

@@ -31,7 +31,7 @@ def main():
 
     if len(sys.argv) > 1:
         if sys.argv[1] == 'admon':
-            os.system('python2 ./beegfs-installer/src/admin-install.py')
+            os.system('python2 ./beegfs-installer/src/admon-install.py')
         elif sys.argv[1] == 'client':
             os.system('python2 ./beegfs-installer/src/client-install.py')
         elif sys.argv[1] == 'management':

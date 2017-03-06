@@ -5,7 +5,6 @@ import os
 import platform
 import fileinput
 from helper import Helper
-from builtins import input
 helper = Helper()
 
 def main():
@@ -21,7 +20,7 @@ def get_defaults():
 
 def gather_information(defaults):
     options = {}
-    options['management_node'] = self.default_prompt('Management Node', defaults['management_node'])
+    options['management_node'] = helper.default_prompt('Management Node', defaults['management_node'])
     return options
 
 def install_client(options):
