@@ -24,6 +24,7 @@ def gather_information(defaults):
     options = {}
     options['management_node'] = helper.default_prompt('Management Node', defaults['management_node'])
     options['metadata_service_id'] = helper.default_prompt('Metadata Service ID', defaults['metadata_service_id'])
+    options['metadata_mount'] = helper.default_prompt('Metadata Mount', defaults['metadata_mount'])
     return options
 
 def install_metadata(options):
