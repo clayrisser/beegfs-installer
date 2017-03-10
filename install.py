@@ -44,6 +44,6 @@ def main():
         print('No command given')
         sys.exit('Exiting installer')
 
-    os.system('rm -rf ./install.py ./beegfs-installer')
+    os.system('rm -rf ./beegfs.py ./beegfs-installer')
 
 main()
