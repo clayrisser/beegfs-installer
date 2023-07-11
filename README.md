@@ -3,6 +3,8 @@ Easy installer for BeeGFS
 
 Installer only supports CentOS and Ubuntu
 
+![](assets/beegfs-installer.png)
+
 ## Installation
 
 ### Management Server
